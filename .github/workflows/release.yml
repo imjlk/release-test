@@ -8,6 +8,7 @@ permissions:
   contents: write      # Create tags and releases
   pull-requests: write # Create and update release PRs
   discussions: write   # Open GitHub Discussions (optional)
+  id-token: write      # Required for OIDC / npm Trusted Publishing
 
 jobs:
   release:
@@ -21,6 +22,9 @@ jobs:
       - name: Run Sampo Release/Publish Action
         id: sampo
         uses: bruits/sampo/crates/sampo-github-action@main
+        with:
+          # Enable provenance for OIDC publishing
+          args: --provenance
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # NPM_TOKEN is not required when using OIDC (Trusted Publishing)
