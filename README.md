@@ -65,4 +65,8 @@ git commit -m "feat: my new feature"
 
 ### 주의사항
 *   `packages/test-a/package.json`의 `version` 필드는 Sampo가 관리하므로 수동으로 수정하지 않는 것이 좋습니다.
-*   배포를 위해서는 GitHub 저장소의 Secrets에 `NPM_TOKEN`이 설정되어 있어야 합니다.
+*   **OIDC(Trusted Publishing) 사용 시**:
+    1.  NPM 패키지 설정 페이지에서 "Settings" -> "Trusted Publishers"로 이동합니다.
+    2.  "Connect a CI/CD workflow"를 클릭하고 GitHub Actions를 선택합니다.
+    3.  Repository owner, name, workflow filename(`release.yml`)을 입력하여 연동합니다.
+    4.  이제 `NPM_TOKEN` 없이도 안전하게 배포할 수 있습니다.
