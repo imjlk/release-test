@@ -23,8 +23,10 @@ jobs:
         id: sampo
         uses: bruits/sampo/crates/sampo-github-action@main
         with:
-          # Skip PR creation for now - manual PR creation
-          args: --skip-pr-creation
+          # Use 'release' command (bump versions) - skip PR creation
+          command: release
+          # Enable provenance for OIDC publishing
+          args: --provenance
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # NPM_TOKEN is not required when using OIDC (Trusted Publishing)
